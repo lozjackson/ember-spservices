@@ -13,6 +13,6 @@
     "qunit": "~1.18.0"
   },
   "devDependencies": {
-    "SPServices": "sp-services#2014.02"
+    "sp-services": "sp-services#2014.02"
   }
 }
