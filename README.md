@@ -122,8 +122,9 @@ getCurrentUser( fieldNames );
 
 Params
 
-* fieldNames {Array}  Optional.  An array of field names.
+* `fieldNames` {Array}  Optional.  An array of field names.
 
+An Ember.Object is returned for the current user.
 
 ```
 let currentUser = this.get('spServices').getCurrentUser(["ID", "Name"]);
