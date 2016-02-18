@@ -120,7 +120,9 @@ Methods available on the `SpServicesService`:
   getCurrentUser( fieldNames );
   ```
 
-  - fieldNames {Array}  Optional.  An array of field names.
+  ### Params
+
+    - fieldNames {Array}  Optional.  An array of field names.
 
 
   ```
@@ -136,10 +138,12 @@ Methods available on the `SpServicesService`:
   spServices.getVersionCollection( listName, itemId, fieldName, results );
   ```
 
-  - listName {String}  The name of the list.
-  - itemId {Integer}  The `Id` of the list item.
-  - fieldName {String}  The name of the field.
-  - results {Array|Function} Either an array to store the results in, or a callback function.
+  ### Params
+
+    - listName {String}  The name of the list.
+    - itemId {Integer}  The `Id` of the list item.
+    - fieldName {String}  The name of the field.
+    - results {Array|Function} Either an array to store the results in, or a callback function.
 
   The following example will get the version collection for the `Description` field,
   for a list item with `Id` of `1`, from the list called `ExampleList` and store
