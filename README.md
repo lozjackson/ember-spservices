@@ -136,7 +136,7 @@ currentUser.get('name') // Name
 ### getVersionCollection
 
 ```
-spServices.getVersionCollection( listName, itemId, fieldName, results );
+getVersionCollection( listName, itemId, fieldName, results );
 ```
 
 Params
@@ -153,7 +153,7 @@ the results in the `versionCollection` array.
 ```
 let versionCollection = Ember.A(); // an array to store the version collection in
 
-spServices.getVersionCollection("ExampleList", 1, "Description", versionCollection);
+this.get('spServices').getVersionCollection("ExampleList", 1, "Description", versionCollection);
 ```
 
 Alternatively you can pass in a callback function.
@@ -163,7 +163,7 @@ let callback = function (xData, status) {
   //... do something with `xData`
 };
 
-spServices.getVersionCollection(listName, itemId, fieldName, callback);
+this.get('spServices').getVersionCollection(listName, itemId, fieldName, callback);
 ```
 
 # Contributing
