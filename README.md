@@ -16,6 +16,10 @@ Docs for this addon are in the source code and can be generated using yuidoc.
 
 * `ember install` this repository
 
+## Dependencies
+
+* jQuery.SPServices
+
 ## Use
 
 Once installed the `jQuery.SPServices` library can be used.  The library is
