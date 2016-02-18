@@ -116,54 +116,54 @@ Methods available on the `SpServicesService`:
 
 ### getCurrentUser
 
-  ```
-  getCurrentUser( fieldNames );
-  ```
+```
+getCurrentUser( fieldNames );
+```
 
-  Params
+Params
 
-    * fieldNames {Array}  Optional.  An array of field names.
+* fieldNames {Array}  Optional.  An array of field names.
 
 
-  ```
-  let currentUser = this.get('spServices').getCurrentUser(["ID", "Name"]);
+```
+let currentUser = this.get('spServices').getCurrentUser(["ID", "Name"]);
 
-  currentUser.get('id') // ID
-  currentUser.get('name') // Name
-  ```
+currentUser.get('id') // ID
+currentUser.get('name') // Name
+```
 
 ### getVersionCollection
 
-  ```
-  spServices.getVersionCollection( listName, itemId, fieldName, results );
-  ```
+```
+spServices.getVersionCollection( listName, itemId, fieldName, results );
+```
 
-  Params
+Params
 
-    * listName {String}  Required.  The name of the list.
-    * itemId {Integer}  Required.  The `Id` of the list item.
-    * fieldName {String}  Required.  The name of the field.
-    * results {Array|Function} Required.  Either an array to store the results in, or a callback function.
+* listName {String}  Required.  The name of the list.
+* itemId {Integer}  Required.  The `Id` of the list item.
+* fieldName {String}  Required.  The name of the field.
+* results {Array|Function} Required.  Either an array to store the results in, or a callback function.
 
-  The following example will get the version collection for the `Description` field,
-  for a list item with `Id` of `1`, from the list called `ExampleList` and store
-  the results in the `versionCollection` array.
+The following example will get the version collection for the `Description` field,
+for a list item with `Id` of `1`, from the list called `ExampleList` and store
+the results in the `versionCollection` array.
 
-  ```
-  let versionCollection = Ember.A(); // an array to store the version collection in
+```
+let versionCollection = Ember.A(); // an array to store the version collection in
 
-  spServices.getVersionCollection("ExampleList", 1, "Description", versionCollection);
-  ```
+spServices.getVersionCollection("ExampleList", 1, "Description", versionCollection);
+```
 
-  Alternatively you can pass in a callback function.
+Alternatively you can pass in a callback function.
 
-  ```
-  let callback = function (xData, status) {
-    //... do something with `xData`
-  };
+```
+let callback = function (xData, status) {
+  //... do something with `xData`
+};
 
-  spServices.getVersionCollection(listName, itemId, fieldName, callback);
-  ```
+spServices.getVersionCollection(listName, itemId, fieldName, callback);
+```
 
 # Contributing
 
