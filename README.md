@@ -140,13 +140,13 @@ spServices.getVersionCollection( listName, itemId, fieldName, results );
 
 Params
 
-* listName {String}  Required.  The name of the list.
-* itemId {Integer}  Required.  The `Id` of the list item.
-* fieldName {String}  Required.  The name of the field.
-* results {Array|Function} Required.  Either an array to store the results in, or a callback function.
+* `listName` {String}  Required.  The name of the list.
+* `itemId` {Integer}  Required.  The `Id` of the list item.
+* `fieldName` {String}  Required.  The name of the field.
+* `results` {Array|Function} Required.  Either an array to store the results in, or a callback function.
 
 The following example will get the version collection for the `Description` field,
-for a list item with `Id` of `1`, from the list called `ExampleList` and store
+for a list item with `Id` of `1`, from the list called "ExampleList" and store
 the results in the `versionCollection` array.
 
 ```
