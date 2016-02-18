@@ -55,7 +55,7 @@ the library a bit more ember friendly.
 ```
 import Ember from 'ember'
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
 
   spServices: Ember.inject.service(), // inject the service
 
@@ -73,9 +73,13 @@ library.
 For example, get the current user:
 
 ```
+let currentUser = this.get('spServices').getCurrentUser();
+```
+
+```
 import Ember from 'ember'
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
 
   spServices: Ember.inject.service(), // inject the service
 
@@ -91,7 +95,7 @@ library on the property `_SPServices`.
 ```
 import Ember from 'ember'
 
-export default Ember.Controller.extend({
+export default Ember.Component.extend({
 
   spServices: Ember.inject.service(), // inject the service
 
@@ -116,7 +120,7 @@ Methods available on the `SpServicesService`:
   getCurrentUser( fieldNames );
   ```
 
-  ** fieldNames {Array}  Optional.  An array of field names.
+  - fieldNames {Array}  Optional.  An array of field names.
 
 
   ```
@@ -132,10 +136,10 @@ Methods available on the `SpServicesService`:
   spServices.getVersionCollection( listName, itemId, fieldName, results );
   ```
 
-  ** listName {String}  The name of the list.
-  ** itemId {Integer}  The `Id` of the list item.
-  ** fieldName {String}  The name of the field.
-  ** results {Array|Function} Either an array to store the results in, or a callback function.
+  - listName {String}  The name of the list.
+  - itemId {Integer}  The `Id` of the list item.
+  - fieldName {String}  The name of the field.
+  - results {Array|Function} Either an array to store the results in, or a callback function.
 
   The following example will get the version collection for the `Description` field,
   for a list item with `Id` of `1`, from the list called `ExampleList` and store
