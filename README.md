@@ -22,6 +22,21 @@ Once installed the `jQuery.SPServices` library can be used.  The library is
 available at `Ember.$().SPServices`.  For more information and instructions for
 use follow the documentation on the SPServices site linked to above.
 
+```
+import Ember from 'ember'
+
+export default Ember.Controller.extend({
+
+  doSomething: Ember.computed(function () {
+
+    Ember.$().SPServices({
+      // ... do something with the SPServices library
+    });
+
+  })
+});
+```
+
 ### SpServices Service
 
 Additionally, the addon provides an `SpServices` Service that makes working with
@@ -32,12 +47,12 @@ import Ember from 'ember'
 
 export default Ember.Controller.extend({
 
-  spServices: Ember.inject.service()
+  spServices: Ember.inject.service(), // inject the service
 
   doSomething: Ember.computed(function () {
     let spServices = this.get('spServices');
 
-    // ...
+    // ...do something with the `spServices` service
   })
 });
 ```
@@ -52,12 +67,10 @@ import Ember from 'ember'
 
 export default Ember.Controller.extend({
 
-  spServices: Ember.inject.service()
+  spServices: Ember.inject.service(), // inject the service
 
   currentUser: Ember.computed(function () {
-    let spServices = this.get('spServices');
-
-    return spServices.getCurrentUser();
+    return this.get('spServices').getCurrentUser();
   })
 });
 ```
@@ -70,9 +83,9 @@ import Ember from 'ember'
 
 export default Ember.Controller.extend({
 
-  spServices: Ember.inject.service()
+  spServices: Ember.inject.service(), // inject the service
 
-  currentUser: Ember.computed(function () {
+  doSomething: Ember.computed(function () {
     let SPServices = this.get('spServices._SPServices');
 
     // work with the `SPServices` library directly...
