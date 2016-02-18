@@ -14,7 +14,7 @@ Docs for this addon are in the source code and can be generated using yuidoc.
 
 ## Installation
 
-* `ember install ember-spservices`
+* `ember install` this repository
 
 ## Use
 
