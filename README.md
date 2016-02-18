@@ -23,23 +23,33 @@ available at `Ember.$().SPServices`.  For more information and instructions for
 use follow the documentation on the SPServices site linked to above.
 
 ```
-import Ember from 'ember'
-
-export default Ember.Controller.extend({
-
-  doSomething: Ember.computed(function () {
-
-    Ember.$().SPServices({
-      // ... do something with the SPServices library
-    });
-
-  })
+// do something with the SPServices library
+Ember.$().SPServices({
+  // ...
 });
 ```
 
-### SpServices Service
+Used in a component...
 
-Additionally, the addon provides an `SpServices` Service that makes working with
+```
+import Ember from 'ember'
+
+export default Ember.Component.extend({
+
+  doSomething() {
+
+    // do something with the `jQuery.SPServices` library
+    Ember.$().SPServices({
+      // ...
+    });
+
+  }
+});
+```
+
+### SpServicesService
+
+Additionally, the addon provides an `Ember.Service` that makes working with
 the library a bit more ember friendly.
 
 ```
@@ -57,7 +67,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-The `spServices` service provides a few shortcuts to functions of the `jQuery.SPServices`
+The `SpServicesService` provides a few shortcuts to functions of the `jQuery.SPServices`
 library.
 
 For example, get the current user:
@@ -75,7 +85,7 @@ export default Ember.Controller.extend({
 });
 ```
 
-The `spServices` service also gives us direct access to the `jQuery.SPServices`
+The `SpServicesService` also gives us direct access to the `jQuery.SPServices`
 library on the property `_SPServices`.
 
 ```
@@ -88,13 +98,64 @@ export default Ember.Controller.extend({
   doSomething: Ember.computed(function () {
     let SPServices = this.get('spServices._SPServices');
 
-    // work with the `SPServices` library directly...
+    // work with the `jQuery.SPServices` library directly...
     SPServices({
       // ...do your stuff
     });
   })
 });
 ```
+
+### Methods available
+
+Methods available on the `SpServicesService`:
+
+* getCurrentUser
+
+  ```
+  getCurrentUser( fieldNames );
+  ```
+
+  ** fieldNames {Array}  Optional.  An array of field names.
+
+
+  ```
+  let currentUser = this.get('spServices').getCurrentUser(["ID", "Name"]);
+
+  currentUser.get('id') // ID
+  currentUser.get('name') // Name
+  ```
+
+* getVersionCollection
+
+  ```
+  spServices.getVersionCollection( listName, itemId, fieldName, results );
+  ```
+
+  ** listName {String}  The name of the list.
+  ** itemId {Integer}  The `Id` of the list item.
+  ** fieldName {String}  The name of the field.
+  ** results {Array|Function} Either an array to store the results in, or a callback function.
+
+  The following example will get the version collection for the `Description` field,
+  for a list item with `Id` of `1`, from the list called `ExampleList` and store
+  the results in the `versionCollection` array.
+
+  ```
+  let versionCollection = Ember.A(); // an array to store the version collection in
+
+  spServices.getVersionCollection("ExampleList", 1, "Description", versionCollection);
+  ```
+
+  Alternatively you can pass in a callback function.
+
+  ```
+  let callback = function (xData, status) {
+    //... do something with `xData`
+  };
+
+  spServices.getVersionCollection(listName, itemId, fieldName, callback);
+  ```
 
 # Contributing
 
