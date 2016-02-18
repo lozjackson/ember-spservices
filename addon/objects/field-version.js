@@ -6,6 +6,11 @@ import Ember from 'ember';
 const computed = Ember.computed;
 
 /**
+  # FieldVersionObject
+
+  This object is used in the `getVersionCollection` method of the `SpServicesService`.
+  See the `SpServicesService` docs for more info.
+
   @class FieldVersionObject
   @namespace Objects
 */
