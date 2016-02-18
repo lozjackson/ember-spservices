@@ -1,0 +1,12 @@
+{
+  "name": "ember-spservices",
+  "description": "An ember-cli addon that provides a wrapper around the jQuery.SPServices library",
+  "url": "https://github.com/lozjackson/servicedesk",
+  "options": {
+    "paths": [
+      "addon"
+    ],
+    "exclude": "vendor",
+    "outdir":   "docs"
+  }
+}
