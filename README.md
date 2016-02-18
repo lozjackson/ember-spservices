@@ -47,7 +47,7 @@ export default Ember.Component.extend({
 });
 ```
 
-### SpServicesService
+# SpServicesService
 
 Additionally, the addon provides an `Ember.Service` that makes working with
 the library a bit more ember friendly.
