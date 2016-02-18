@@ -110,19 +110,19 @@ export default Ember.Component.extend({
 });
 ```
 
-### Methods available
+## Methods available
 
 Methods available on the `SpServicesService`:
 
-* getCurrentUser
+### getCurrentUser
 
   ```
   getCurrentUser( fieldNames );
   ```
 
-  ### Params
+  Params
 
-    - fieldNames {Array}  Optional.  An array of field names.
+    * fieldNames {Array}  Optional.  An array of field names.
 
 
   ```
@@ -132,18 +132,18 @@ Methods available on the `SpServicesService`:
   currentUser.get('name') // Name
   ```
 
-* getVersionCollection
+### getVersionCollection
 
   ```
   spServices.getVersionCollection( listName, itemId, fieldName, results );
   ```
 
-  ### Params
+  Params
 
-    - listName {String}  The name of the list.
-    - itemId {Integer}  The `Id` of the list item.
-    - fieldName {String}  The name of the field.
-    - results {Array|Function} Either an array to store the results in, or a callback function.
+    * listName {String}  Required.  The name of the list.
+    * itemId {Integer}  Required.  The `Id` of the list item.
+    * fieldName {String}  Required.  The name of the field.
+    * results {Array|Function} Required.  Either an array to store the results in, or a callback function.
 
   The following example will get the version collection for the `Description` field,
   for a list item with `Id` of `1`, from the list called `ExampleList` and store
