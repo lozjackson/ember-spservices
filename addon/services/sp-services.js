@@ -176,6 +176,41 @@ export default Ember.Service.extend({
   },
 
   /**
+    ## GetGroupCollectionFromUser
+
+    @method getGroupCollectionFromUser
+    @param {String} userLoginName
+    @param {Array|Function} results
+  */
+  getGroupCollectionFromUser(userLoginName, results) {
+    let fields = {id:'ID', name:'Name', description:'Description', ownerId:'OwnerID', ownerIsUser:'OwnerIsUser'};
+    let keys = Object.keys(fields);
+    let _SPServices = this.get('_SPServices');
+    _SPServices({
+      operation: "GetGroupCollectionFromUser",
+      userLoginName: userLoginName,
+      async: false,
+      completefunc: function ( xData, status ) {
+        if (typeof results !== 'undefined') {
+          if (typeof results === 'function') {
+            results.call(this, xData, status);
+          } else {
+            if (xData.responseXML) {
+              Ember.$(xData.responseXML).find( "Group" ).each(function (i, group) {
+                let hash = {};
+                keys.forEach(function (key) {
+                  hash[key] = Ember.$(group).attr(fields[key]);
+                });
+                results.pushObject(Ember.Object.create(hash));
+              });
+            }
+          }
+        }
+      }
+    });
+  },
+
+  /**
     ## GetVersionCollection
 
     Call the `GetVersionCollection` operation.  You can pass in an array which

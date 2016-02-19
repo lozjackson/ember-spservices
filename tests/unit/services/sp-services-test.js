@@ -57,7 +57,77 @@ test('getCurrentUser() method - pass in fieldNames', function(assert) {
   assert.equal(user.get('name'), 'Test User');
 });
 
-test('getVersionCollection() method - pas in an array', function(assert) {
+test('getGroupCollectionFromUser() method - pass in an array', function(assert) {
+  assert.expect(16);
+  var service = this.subject();
+  let groups = Ember.A();
+  let userLoginName = `test.user`;
+  let xml = `<Groups>
+    <Group
+      ID="1"
+      Name="Administrators"
+      Description="Admin Group"
+      OwnerID="2"
+      OwnerIsUser="False" />
+    <Group
+      ID="3"
+      Name="IT Support Staff"
+      Description="Group for IT Support staff"
+      OwnerID="4"
+      OwnerIsUser="True" />
+  </Groups>`;
+  service.set('_SPServices', (obj) => {
+    // assert.ok(true)
+    assert.equal(obj.operation, 'GetGroupCollectionFromUser');
+    assert.equal(obj.async, false);
+    assert.equal(obj.userLoginName, userLoginName);
+    assert.equal(typeof obj.completefunc, 'function');
+    obj.completefunc({
+      responseXML: Ember.$.parseXML(xml)
+    });
+  });
+
+
+  service.getGroupCollectionFromUser(userLoginName, groups);
+  assert.ok(service);
+  assert.equal(groups.get('length'), 2, `should be 2 groups`);
+
+  assert.equal(groups.objectAt(0).get('id'), 1);
+  assert.equal(groups.objectAt(0).get('name'), 'Administrators');
+  assert.equal(groups.objectAt(0).get('description'), 'Admin Group');
+  assert.equal(groups.objectAt(0).get('ownerId'), 2);
+  assert.equal(groups.objectAt(0).get('ownerIsUser'), 'False');
+
+  assert.equal(groups.objectAt(1).get('id'), 3);
+  assert.equal(groups.objectAt(1).get('name'), 'IT Support Staff');
+  assert.equal(groups.objectAt(1).get('description'), 'Group for IT Support staff');
+  assert.equal(groups.objectAt(1).get('ownerId'), 4);
+  assert.equal(groups.objectAt(1).get('ownerIsUser'), 'True');
+});
+
+test('getGroupCollectionFromUser() method - pass in a callback function', function(assert) {
+  assert.expect(7);
+  var service = this.subject();
+  let callback = (xData, status) => {
+    assert.equal(xData.responseXML, true);
+    assert.equal(status, 'success');
+  };
+  let userLoginName = `test.user`;
+
+  service.set('_SPServices', (obj) => {
+    assert.equal(obj.operation, 'GetGroupCollectionFromUser');
+    assert.equal(obj.async, false);
+    assert.equal(obj.userLoginName, userLoginName);
+    assert.equal(typeof obj.completefunc, 'function');
+    obj.completefunc({
+      responseXML: true
+    }, 'success');
+  });
+  service.getGroupCollectionFromUser(userLoginName, callback);
+  assert.ok(service);
+});
+
+test('getVersionCollection() method - pass in an array', function(assert) {
   assert.expect(8);
   var service = this.subject();
   let listName = 'testList';
